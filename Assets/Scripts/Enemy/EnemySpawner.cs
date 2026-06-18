@@ -1,8 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+// System: Enemy
+// Role: Periodically spawns enemy prefabs around the player and assigns their movement target.
+// Depends on: EnemyMovement, enemy prefabs, player Transform.
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private Transform playerTransform;
@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        if (playerTransform == null || enemyPrefabs == null|| enemyPrefabs.Length == 0)
+        if (playerTransform == null || enemyPrefabs == null || enemyPrefabs.Length == 0)
         {
             return;
         }
@@ -31,10 +31,10 @@ public class EnemySpawner : MonoBehaviour
         float spawnDistance = UnityEngine.Random.Range(minSpawnDistance, maxSpawnDistance);
         Vector2 spawnPosition = (Vector2)playerTransform.position + UnityEngine.Random.insideUnitCircle * spawnDistance;
         GameObject enemy = Instantiate(enemyPrefabs[UnityEngine.Random.Range(0, enemyPrefabs.Length)], spawnPosition, Quaternion.identity);
-        EnemyController enemyController = enemy.GetComponent<EnemyController>();
-        if (enemyController != null)
+        EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
+        if (enemyMovement != null)
         {
-            enemyController.Init(playerTransform);
+            enemyMovement.SetTarget(playerTransform);
         }
     }
 }

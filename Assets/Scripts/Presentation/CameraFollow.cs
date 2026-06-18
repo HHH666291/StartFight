@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+// System: Presentation
+// Role: Smoothly follows a target with a fixed camera offset.
+// Depends on: Target Transform.
 public class CameraFollow : MonoBehaviour
 {
     [SerializeField] private Transform target;
@@ -13,7 +14,7 @@ public class CameraFollow : MonoBehaviour
         if (target != null)
         {
             Vector3 desiredPosition = target.position + offset;
-            Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed*Time.deltaTime);
+            Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
             transform.position = smoothedPosition;
         }
     }

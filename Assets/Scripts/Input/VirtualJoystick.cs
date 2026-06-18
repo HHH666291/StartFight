@@ -1,9 +1,10 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+// System: Input
+// Role: Converts pointer movement into a normalized joystick direction and release event.
+// Depends on: Canvas, RectTransform, Unity EventSystem.
 public class VirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     [Header("UI")]
@@ -15,7 +16,7 @@ public class VirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler,
     private Canvas canvas;
     private Camera cam;
 
-    public event Action<Vector2> OnJoystickReleased ;
+    public event Action<Vector2> OnJoystickReleased;
 
     private void Awake()
     {
@@ -31,7 +32,6 @@ public class VirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler,
     public void OnPointerDown(PointerEventData eventData)
     {
         UpdateJoystick(eventData);
-        // Handle pointer down event if needed
     }
     public void OnDrag(PointerEventData eventData)
     {
@@ -58,6 +58,7 @@ public class VirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler,
         Vector2 position;
         if (RectTransformUtility.ScreenPointToLocalPointInRectangle(background, eventData.position, cam, out position))
         {
+            // Convert the local pointer position into a centered -1 to 1 joystick range.
             position.x = (position.x / background.sizeDelta.x) * 2f;
             position.y = (position.y / background.sizeDelta.y) * 2f;
 

@@ -1,8 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+// System: Enemy
+// Role: Moves an enemy Rigidbody2D toward its assigned target.
+// Depends on: Rigidbody2D, Transform target.
+public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 3f;
     private Transform target;
@@ -12,7 +13,7 @@ public class EnemyController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
-    public  void Init(Transform playerTransform)
+    public void SetTarget(Transform playerTransform)
     {
         target = playerTransform;
     }
