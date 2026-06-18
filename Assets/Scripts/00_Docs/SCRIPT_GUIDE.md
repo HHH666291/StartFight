@@ -58,12 +58,8 @@
 
 应挂载：`Rigidbody2D`、`CharacterStats`、`CharacterHealth`、`CharacterDeath`、`CharacterLevel`、`PlayerExperience`、`PlayerMovement`、`PlayerAttack`。
 
-- `CharacterStats.characterHealth` → Player 的 `CharacterHealth`
-- `CharacterStats.characterDeath` → Player 的 `CharacterDeath`
-- `CharacterStats.characterLevel` → Player 的 `CharacterLevel`
 - `CharacterHealth.characterStats` → Player 的 `CharacterStats`
 - `CharacterHealth.characterDeath` → Player 的 `CharacterDeath`
-- `CharacterDeath.characterStats` → Player 的 `CharacterStats`
 - `CharacterLevel.characterStats` → Player 的 `CharacterStats`
 - `CharacterLevel.characterHealth` → Player 的 `CharacterHealth`
 - `PlayerExperience.characterLevel` → Player 的 `CharacterLevel`
@@ -81,12 +77,8 @@
 
 应挂载：`Rigidbody2D`、`CharacterStats`、`CharacterHealth`、`CharacterDeath`、`EnemyMovement`、`HealthFillView`。
 
-- `CharacterStats.characterHealth` → 本 Prefab 的 `CharacterHealth`
-- `CharacterStats.characterDeath` → 本 Prefab 的 `CharacterDeath`
-- `CharacterStats.characterLevel` → 留空
 - `CharacterHealth.characterStats` → 本 Prefab 的 `CharacterStats`
 - `CharacterHealth.characterDeath` → 本 Prefab 的 `CharacterDeath`
-- `CharacterDeath.characterStats` → 本 Prefab 的 `CharacterStats`
 - `HealthFillView.characterHealth` → 本 Prefab 的 `CharacterHealth`
 - `HealthFillView.healthFillTransform` → 血条 Fill Transform
 - `EnemyContactDamage` → 当前不要挂载；启用敌人攻击时再配置 Target Layer 和伤害值
@@ -108,4 +100,4 @@
 - 返回是否成功的方法使用 `Try`；布尔判断使用 `Is`。
 - 显示脚本以 `View` 或 `UI` 结尾。
 - 不使用含义宽泛的 `Controller`、`Helper`、`Utility` 或 `Manager`；只有真正拥有全局游戏状态的 `GameManager` 例外。
-- 每个脚本保留三行身份注释：System、Role、Depends on。
+- 每个脚本顶部保留四行中文身份注释：`系统`、`职责`、`依赖`、`扩展`。

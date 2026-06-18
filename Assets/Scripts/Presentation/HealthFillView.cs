@@ -1,8 +1,9 @@
 using UnityEngine;
 
-// System: Presentation
-// Role: Displays CharacterHealth as a scaled fill Transform.
-// Depends on: CharacterHealth, fill Transform.
+// 系统：表现（Presentation）
+// 职责：监听生命变化，通过缩放 Fill Transform 显示世界血条比例。
+// 依赖：CharacterHealth、血条 Fill Transform。
+// 扩展：血条颜色、缓动和受击闪烁放在这里；生命规则放在 CharacterHealth。
 public class HealthFillView : MonoBehaviour
 {
     [SerializeField] private CharacterHealth characterHealth;

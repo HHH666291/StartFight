@@ -30,12 +30,14 @@ VirtualJoystick
 EnemySpawner ─> EnemyMovement
 EnemyContactDamage ─> DamageDealer ─> CharacterHealth
 
+CharacterHealth ─> CharacterStats / CharacterDeath
+CharacterLevel ─> CharacterStats / CharacterHealth
 CharacterHealth ─> HealthFillView / PlayerStatsUI
 PlayerExperience ─> PlayerStatsUI
 CameraFollow ─> Player Transform
 ```
 
-依赖方向保持从具体入口指向通用规则，再指向状态组件。Presentation 只订阅数据变化，不反向修改玩法。
+依赖方向保持从具体入口指向通用规则，再指向状态组件。`CharacterStats` 不反向引用生命、死亡和经验组件，避免角色组件循环依赖。Presentation 只订阅数据变化，不反向修改玩法。
 
 ## 3. 当前脚本列表
 
@@ -46,7 +48,7 @@ CameraFollow ─> Player Transform
 
 ### Character
 
-- `CharacterStats`：角色数值门面、等级值和成长公式。
+- `CharacterStats`：角色等级值和成长公式，不保存当前生命、死亡或当前经验。
 - `CharacterHealth`：当前生命、扣血、回满和生命事件。
 - `CharacterDeath`：死亡状态、死亡事件和对象销毁。
 - `CharacterLevel`：经验累计和升级流程。
@@ -89,7 +91,8 @@ CameraFollow ─> Player Transform
 ## 4. 当前保留的简化点
 
 - 成长公式仍是 `CharacterStats` 内的简单静态方法，没有配置系统。
-- `CharacterStats` 保留 `TakeDamage`、`GainExp` 和兼容事件，便于旧调用逐步迁移；新伤害应走 `DamageDealer`，玩家经验应走 `PlayerExperience`。
+- 伤害统一走 `DamageDealer` 并直接面向 `CharacterHealth`；玩家经验统一走 `PlayerExperience`。
+- `PlayerExperience` 当前是较薄的玩家专属边界，未来玩家经验倍率或专属规则优先放在这里。
 - `DamageDealer`、`AttackCone`、`AttackTargetFinder`、`ExpReward` 无状态，因此使用静态类，避免增加无意义场景组件。
 - `GameManager` 只保存游戏状态，不管理 UI、角色、敌人或音频。
 - `EnemyContactDamage` 和 `DamageNumberView` 是明确的扩展落点，但当前不挂载、不改变现有玩法。

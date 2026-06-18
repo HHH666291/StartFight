@@ -1,8 +1,9 @@
 using UnityEngine;
 
-// System: Player
-// Role: Coordinates player attack input, target selection, damage, rewards, and visuals.
-// Depends on: VirtualJoystick, CharacterStats, PlayerExperience, Combat, FanAttackVisual.
+// 系统：玩家（Player）
+// 职责：响应攻击输入，协调目标查找、范围判断、伤害、击杀奖励和攻击表现。
+// 依赖：VirtualJoystick、CharacterStats、PlayerExperience、Combat、FanAttackVisual。
+// 扩展：玩家攻击流程和技能释放入口放在这里；范围数学与伤害规则分别放在 Combat 对应脚本。
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private VirtualJoystick attackJoystick;
@@ -68,13 +69,13 @@ public class PlayerAttack : MonoBehaviour
             return;
         }
 
-        CharacterStats targetStats = targetCollider.GetComponent<CharacterStats>();
-        if (targetStats == null)
+        CharacterHealth targetHealth = targetCollider.GetComponent<CharacterHealth>();
+        if (targetHealth == null)
         {
             return;
         }
 
-        DamageInfo damage = new DamageInfo(playerStats.AttackPower, playerStats, targetStats);
+        DamageInfo damage = new DamageInfo(playerStats.AttackPower, playerStats, targetHealth);
         if (DamageDealer.TryDealDamage(damage))
         {
             ExpReward.TryGrantKillExperience(damage, playerExperience);

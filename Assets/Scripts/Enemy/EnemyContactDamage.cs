@@ -1,8 +1,9 @@
 using UnityEngine;
 
-// System: Enemy
-// Role: Provides an optional contact-damage entry point for future enemy attacks.
-// Depends on: CharacterStats, DamageDealer.
+// 系统：敌人（Enemy）
+// 职责：提供可选的敌人接触伤害入口；当前作为未来敌人攻击扩展点保留。
+// 依赖：CharacterStats、CharacterHealth、DamageDealer。
+// 扩展：敌人接触攻击参数和触发条件放在这里；通用伤害计算仍放在 DamageDealer。
 public class EnemyContactDamage : MonoBehaviour
 {
     [SerializeField] private CharacterStats enemyStats;
@@ -24,10 +25,10 @@ public class EnemyContactDamage : MonoBehaviour
             return;
         }
 
-        CharacterStats targetStats = collision.gameObject.GetComponent<CharacterStats>();
-        if (targetStats != null)
+        CharacterHealth targetHealth = collision.gameObject.GetComponent<CharacterHealth>();
+        if (targetHealth != null)
         {
-            DamageDealer.TryDealDamage(new DamageInfo(contactDamage, enemyStats, targetStats));
+            DamageDealer.TryDealDamage(new DamageInfo(contactDamage, enemyStats, targetHealth));
         }
     }
 }

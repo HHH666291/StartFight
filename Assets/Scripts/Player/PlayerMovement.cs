@@ -1,8 +1,9 @@
 using UnityEngine;
 
-// System: Player
-// Role: Reads joystick or keyboard movement input and moves the player Rigidbody2D.
-// Depends on: VirtualJoystick, Rigidbody2D.
+// 系统：玩家（Player）
+// 职责：读取摇杆或键盘方向，并驱动玩家 Rigidbody2D 移动。
+// 依赖：VirtualJoystick、Rigidbody2D。
+// 扩展：玩家移动速度、冲刺等移动规则放在这里；输入坐标转换放在 Input 系统。
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;

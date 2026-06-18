@@ -1,8 +1,9 @@
 using UnityEngine;
 
-// System: Presentation
-// Role: Smoothly follows a target with a fixed camera offset.
-// Depends on: Target Transform.
+// 系统：表现（Presentation）
+// 职责：让相机以固定偏移平滑跟随目标。
+// 依赖：目标 Transform。
+// 扩展：镜头偏移、震动、缩放等纯表现功能放在这里，不修改角色玩法状态。
 public class CameraFollow : MonoBehaviour
 {
     [SerializeField] private Transform target;

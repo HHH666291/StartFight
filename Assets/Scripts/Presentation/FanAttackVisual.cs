@@ -1,8 +1,9 @@
 using UnityEngine;
 
-// System: Presentation
-// Role: Builds and displays the temporary fan-shaped attack visual.
-// Depends on: MeshFilter, MeshRenderer.
+// 系统：表现（Presentation）
+// 职责：生成并显示临时扇形攻击网格，到期后自动销毁。
+// 依赖：MeshFilter、MeshRenderer。
+// 扩展：扇形材质、动画和生命周期放在这里；命中判定仍由 Combat 系统负责。
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(MeshFilter))]
 public class FanAttackVisual : MonoBehaviour
@@ -35,7 +36,7 @@ public class FanAttackVisual : MonoBehaviour
 
     private void BuildFanMesh(float range, float angle)
     {
-        // Vertex zero is the center; the remaining vertices trace the fan arc.
+        // 第 0 个顶点是圆心，其余顶点依次描出扇形圆弧。
         Mesh mesh = new Mesh();
         Vector3[] vertices = new Vector3[segmentCount + 2];
         int[] triangles = new int[segmentCount * 3];

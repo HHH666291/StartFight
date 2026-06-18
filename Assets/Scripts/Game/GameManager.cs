@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// System: Game
-// Role: Owns the global play state and exposes pause, resume, game-over, and restart commands.
-// Depends on: GameState, Time, SceneManager.
+// 系统：游戏流程（Game）
+// 职责：保存全局游戏状态，并提供暂停、继续、结束和重新开始命令。
+// 依赖：GameState、Time、SceneManager。
+// 扩展：全局流程状态和场景级命令放在这里；角色、战斗、UI 具体逻辑不要放入。
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }

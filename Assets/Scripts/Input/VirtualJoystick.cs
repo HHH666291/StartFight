@@ -2,9 +2,10 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// System: Input
-// Role: Converts pointer movement into a normalized joystick direction and release event.
-// Depends on: Canvas, RectTransform, Unity EventSystem.
+// 系统：输入（Input）
+// 职责：把触摸或鼠标拖动转换为标准化方向，并在释放时发布事件。
+// 依赖：Canvas、RectTransform、Unity EventSystem。
+// 扩展：摇杆死区、灵敏度等纯输入转换放在这里；移动和攻击玩法规则放在 Player 系统。
 public class VirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     [Header("UI")]
@@ -58,7 +59,7 @@ public class VirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler,
         Vector2 position;
         if (RectTransformUtility.ScreenPointToLocalPointInRectangle(background, eventData.position, cam, out position))
         {
-            // Convert the local pointer position into a centered -1 to 1 joystick range.
+            // 将局部指针坐标转换为以中心为原点的 -1 到 1 范围。
             position.x = (position.x / background.sizeDelta.x) * 2f;
             position.y = (position.y / background.sizeDelta.y) * 2f;
 

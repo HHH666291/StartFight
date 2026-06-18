@@ -1,9 +1,10 @@
 using System;
 using UnityEngine;
 
-// System: Player
-// Role: Provides the player-facing experience API and relays progression events to the HUD.
-// Depends on: CharacterLevel.
+// 系统：玩家（Player）
+// 职责：提供玩家专属的经验入口，并把通用升级事件转发给玩家 HUD。
+// 依赖：CharacterLevel。
+// 扩展：玩家经验倍率、玩家专属加成等放在这里；通用升级计算仍放在 CharacterLevel。
 public class PlayerExperience : MonoBehaviour
 {
     [SerializeField] private CharacterLevel characterLevel;

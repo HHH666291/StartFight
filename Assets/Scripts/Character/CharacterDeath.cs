@@ -1,24 +1,15 @@
 using System;
 using UnityEngine;
 
-// System: Character
-// Role: Owns death state, publishes death, and removes the defeated character object.
-// Depends on: CharacterStats.
+// 系统：角色（Character）
+// 职责：保存死亡状态、发布死亡事件，并移除死亡角色对象。
+// 依赖：无业务组件依赖，由 CharacterHealth 在生命归零时调用。
+// 扩展：死亡动画、延迟销毁或对象池回收放在这里；奖励发放放在 Reward 系统。
 public class CharacterDeath : MonoBehaviour
 {
-    [SerializeField] private CharacterStats characterStats;
-
     public bool IsDead { get; private set; }
 
     public event Action<CharacterDeath> OnDeath;
-
-    private void Awake()
-    {
-        if (characterStats == null)
-        {
-            characterStats = GetComponent<CharacterStats>();
-        }
-    }
 
     public void Die()
     {
@@ -29,7 +20,6 @@ public class CharacterDeath : MonoBehaviour
 
         IsDead = true;
         OnDeath?.Invoke(this);
-        characterStats?.NotifyDeath();
         Destroy(gameObject);
     }
 }

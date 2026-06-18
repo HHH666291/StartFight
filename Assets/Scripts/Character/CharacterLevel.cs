@@ -1,9 +1,10 @@
 using System;
 using UnityEngine;
 
-// System: Character
-// Role: Owns experience progress and applies level-ups to CharacterStats.
-// Depends on: CharacterStats, CharacterHealth.
+// 系统：角色（Character）
+// 职责：保存当前经验，判断升级，并协调等级增长和升级回满生命。
+// 依赖：CharacterStats 提供等级/经验阈值；CharacterHealth 执行升级回满。
+// 扩展：连续升级、升级事件和通用经验规则放在这里；玩家专属经验入口放在 PlayerExperience。
 public class CharacterLevel : MonoBehaviour
 {
     [SerializeField] private CharacterStats characterStats;
@@ -40,7 +41,6 @@ public class CharacterLevel : MonoBehaviour
 
         currentExp += amount;
         OnExperienceChanged?.Invoke(this);
-        characterStats.NotifyExperienceChanged();
 
         while (currentExp >= characterStats.ExpToNextLevel)
         {
@@ -54,6 +54,5 @@ public class CharacterLevel : MonoBehaviour
         characterStats.IncreaseLevel();
         characterHealth?.RestoreToFull();
         OnLevelChanged?.Invoke(this);
-        characterStats.NotifyLevelChanged();
     }
 }

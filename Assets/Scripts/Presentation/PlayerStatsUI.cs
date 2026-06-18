@@ -1,9 +1,10 @@
 using TMPro;
 using UnityEngine;
 
-// System: Presentation
-// Role: Displays player level, health, attack, and experience in the HUD.
-// Depends on: CharacterStats, CharacterHealth, PlayerExperience, TMP text fields.
+// 系统：表现（Presentation）
+// 职责：监听玩家数据变化，在 HUD 显示等级、生命、攻击力和经验。
+// 依赖：CharacterStats、CharacterHealth、PlayerExperience、TMP 文本。
+// 扩展：新增 HUD 字段和显示格式放在这里；不要从 UI 反向修改玩法状态。
 public class PlayerStatsUI : MonoBehaviour
 {
     [SerializeField] private CharacterStats playerStats;

@@ -1989,9 +1989,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d538122712afeb4a8762e7b97fdfd84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStats: {fileID: 0}
-  playerHealth: {fileID: 0}
-  playerExperience: {fileID: 0}
+  playerStats: {fileID: 2016843503}
+  playerHealth: {fileID: 2016843501}
+  playerExperience: {fileID: 2016843505}
   levelText: {fileID: 1687210392}
   healthText: {fileID: 1057670468}
   attackText: {fileID: 428999237}
@@ -2278,7 +2278,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aab95b95dccb4a97a92a61ecdb04a9e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterStats: {fileID: 2016843503}
 --- !u!114 &2016843503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2292,9 +2291,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
-  characterHealth: {fileID: 2016843501}
-  characterDeath: {fileID: 2016843502}
-  characterLevel: {fileID: 2016843500}
 --- !u!114 &2016843504
 MonoBehaviour:
   m_ObjectHideFlags: 0

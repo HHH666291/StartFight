@@ -223,9 +223,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
-  characterHealth: {fileID: 4706769139361036295}
-  characterDeath: {fileID: 577399552295461453}
-  characterLevel: {fileID: 0}
 --- !u!114 &557117537512231522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,7 +249,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aab95b95dccb4a97a92a61ecdb04a9e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterStats: {fileID: 2160857107016571766}
 --- !u!114 &4706769139361036295
 MonoBehaviour:
   m_ObjectHideFlags: 0

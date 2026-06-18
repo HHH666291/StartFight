@@ -1,8 +1,9 @@
 using UnityEngine;
 
-// System: Enemy
-// Role: Moves an enemy Rigidbody2D toward its assigned target.
-// Depends on: Rigidbody2D, Transform target.
+// 系统：敌人（Enemy）
+// 职责：驱动敌人的 Rigidbody2D 朝指定目标移动。
+// 依赖：Rigidbody2D、目标 Transform。
+// 扩展：追踪、停靠距离、转向等基础移动放在这里；寻路或敌人状态机复杂后再拆独立组件。
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 3f;

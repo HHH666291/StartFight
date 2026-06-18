@@ -1,8 +1,9 @@
 using UnityEngine;
 
-// System: Enemy
-// Role: Periodically spawns enemy prefabs around the player and assigns their movement target.
-// Depends on: EnemyMovement, enemy prefabs, player Transform.
+// 系统：敌人（Enemy）
+// 职责：定时在玩家周围生成敌人，并为新敌人设置追踪目标。
+// 依赖：EnemyMovement、敌人预制体、玩家 Transform。
+// 扩展：波次、权重、生成上限等“刷怪调度”放在这里；敌人自身行为放在对应 Enemy 组件。
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private Transform playerTransform;
