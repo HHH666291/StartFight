@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 557117537512231522}
   - component: {fileID: 577399552295461453}
   - component: {fileID: 4706769139361036295}
+  - component: {fileID: 1187642380317619299}
   m_Layer: 6
   m_Name: Enemy_Square
   m_TagString: Untagged
@@ -264,6 +265,24 @@ MonoBehaviour:
   characterStats: {fileID: 2160857107016571766}
   characterDeath: {fileID: 577399552295461453}
   currentHealth: 0
+--- !u!114 &1187642380317619299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7751653830460333691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd8bef7efac74607b0106128066b0a0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyStats: {fileID: 2160857107016571766}
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  contactDamage: 1
+  attackInterval: 3
 --- !u!1 &8252146720922801366
 GameObject:
   m_ObjectHideFlags: 0

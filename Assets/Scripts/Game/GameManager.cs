@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public GameState CurrentState { get; private set; } = GameState.Playing;
     public bool IsPlaying => CurrentState == GameState.Playing;
+
+    public event Action<GameState> OnStateChanged;
 
     private void Awake()
     {
@@ -27,18 +30,24 @@ public class GameManager : MonoBehaviour
     {
         CurrentState = GameState.Paused;
         Time.timeScale = 0f;
+        OnStateChanged?.Invoke(CurrentState);
+
     }
 
     public void ResumeGame()
     {
         CurrentState = GameState.Playing;
         Time.timeScale = 1f;
+        OnStateChanged?.Invoke(CurrentState);
+
     }
 
     public void GameOver()
     {
         CurrentState = GameState.GameOver;
         Time.timeScale = 0f;
+        OnStateChanged?.Invoke(CurrentState);
+
     }
 
     public void RestartGame()
@@ -46,5 +55,13 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         CurrentState = GameState.Playing;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+    }
+
+    private void SetState(GameState newState)
+    {
+        if (CurrentState == newState) return;
+        CurrentState = newState;
+        OnStateChanged?.Invoke(CurrentState);
     }
 }

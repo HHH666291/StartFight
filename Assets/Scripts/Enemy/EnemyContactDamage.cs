@@ -8,8 +8,10 @@ public class EnemyContactDamage : MonoBehaviour
 {
     [SerializeField] private CharacterStats enemyStats;
     [SerializeField] private LayerMask targetLayer;
-    [SerializeField] private int contactDamage = 1;
+    [SerializeField, Min(1)] private int contactDamage = 1;
+    [SerializeField, Min(0.1f)] private float attackInterval = 3f;
 
+    private float nextAttackTime;
     private void Awake()
     {
         if (enemyStats == null)
@@ -18,7 +20,8 @@ public class EnemyContactDamage : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    //碰撞攻击
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if ((targetLayer.value & (1 << collision.gameObject.layer)) == 0)
         {
@@ -26,9 +29,15 @@ public class EnemyContactDamage : MonoBehaviour
         }
 
         CharacterHealth targetHealth = collision.gameObject.GetComponent<CharacterHealth>();
-        if (targetHealth != null)
+
+        if (targetHealth == null) return;
+        if (Time.time < nextAttackTime) return;
+
+        if (DamageDealer.TryDealDamage(new DamageInfo(contactDamage, enemyStats, targetHealth)))
         {
-            DamageDealer.TryDealDamage(new DamageInfo(contactDamage, enemyStats, targetHealth));
+            nextAttackTime = Time.time+attackInterval ;
         }
+
     }
+
 }

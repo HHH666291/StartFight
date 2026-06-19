@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3582619503969400135}
   - component: {fileID: 5337905520632123445}
   - component: {fileID: 4798734458934736314}
+  - component: {fileID: 7421436107016022172}
   m_Layer: 6
   m_Name: Enemy_Triangle
   m_TagString: Untagged
@@ -183,6 +184,24 @@ MonoBehaviour:
   characterStats: {fileID: 2353464232707002695}
   characterDeath: {fileID: 5337905520632123445}
   currentHealth: 0
+--- !u!114 &7421436107016022172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2312220668016432706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd8bef7efac74607b0106128066b0a0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyStats: {fileID: 2353464232707002695}
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  contactDamage: 1
+  attackInterval: 3
 --- !u!1 &6724663508262790097
 GameObject:
   m_ObjectHideFlags: 0
