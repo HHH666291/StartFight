@@ -16,9 +16,13 @@ public class CharacterStats : MonoBehaviour
 
     internal void IncreaseLevel()
     {
-        level++;
+        SetLevel(Level+1);
     }
 
+    public void SetLevel(int value)
+    {
+        level = ClampLevel (value );
+    }
     private static int ClampLevel(int value)
     {
         return Mathf.Clamp(value, 1, 999);
@@ -27,7 +31,7 @@ public class CharacterStats : MonoBehaviour
     private static int GetMaxHealth(int value)
     {
         value = ClampLevel(value);
-        return 8 + (value - 1) * 2;
+        return 8 + (value - 1) * 20;
     }
 
     private static int GetAttackPower(int value)

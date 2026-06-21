@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private VirtualJoystick moveJoystick;
 
     private Rigidbody2D rb;
+    private bool canMove = true;
+
 
     private void Awake()
     {
@@ -17,6 +19,11 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (!canMove)
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
         Vector2 input = Vector2.zero;
         if (moveJoystick != null)
         {
@@ -28,5 +35,11 @@ public class PlayerMovement : MonoBehaviour
             input = keyboardInput.normalized;
         }
         rb.velocity = input * moveSpeed;
+    }
+
+    public void SetMovementEnabled(bool enabled)
+    {
+        canMove = enabled;
+        if (!canMove && rb != null) { rb.velocity = Vector2.zero; }
     }
 }

@@ -33,9 +33,9 @@ public class EnemyContactDamage : MonoBehaviour
         if (targetHealth == null) return;
         if (Time.time < nextAttackTime) return;
 
-        if (DamageDealer.TryDealDamage(new DamageInfo(contactDamage, enemyStats, targetHealth)))
+        if (DamageDealer.TryDealDamage(new DamageInfo(enemyStats.AttackPower, enemyStats, targetHealth)))
         {
-            nextAttackTime = Time.time+attackInterval ;
+            nextAttackTime = Time.time + attackInterval;
         }
 
     }

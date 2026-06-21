@@ -12,6 +12,7 @@ public class PlayerBasicAttack : MonoBehaviour
     [SerializeField] private CharacterStats playerStats;
     [SerializeField] private PlayerExperience playerExperience;
     [SerializeField] private BasicAttackVisual attackVisual;
+    [SerializeField]private PlayerMovement playerMovement;
 
     private bool isAttacking;
     private CharacterHealth lockedTarget;
@@ -20,6 +21,7 @@ public class PlayerBasicAttack : MonoBehaviour
     {
         if (playerStats == null) { playerStats = GetComponent<CharacterStats>(); }
         if (playerExperience == null) { playerExperience = GetComponent<PlayerExperience>(); }
+        if(playerMovement==null) {playerMovement=GetComponent <PlayerMovement >();}
 
     }
 
@@ -37,8 +39,12 @@ public class PlayerBasicAttack : MonoBehaviour
     {
         isAttacking = true;
 
+        playerMovement?.SetMovementEnabled (false);
+
         attackVisual?.PlayTowards(lockedTarget.transform.position);
         yield return new WaitForSeconds(hitDelay);
+        playerMovement?.SetMovementEnabled(true);
+
         ApplyDamageToLockedTarget();
         float recoveryTime = Mathf.Max(0f, attackDuration - hitDelay);
 
@@ -46,6 +52,8 @@ public class PlayerBasicAttack : MonoBehaviour
 
         lockedTarget = null;
         isAttacking = false;
+
+
     }
 
     private void ApplyDamageToLockedTarget()
@@ -57,5 +65,15 @@ public class PlayerBasicAttack : MonoBehaviour
         DamageInfo damage = new DamageInfo(playerStats.AttackPower, playerStats, lockedTarget);
 
         if (DamageDealer.TryDealDamage(damage)) { ExpReward.TryGrantKillExperience(damage, playerExperience); }
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+
+        lockedTarget = null;
+        isAttacking = false;
+
+        playerMovement?.SetMovementEnabled(true);
     }
 }
